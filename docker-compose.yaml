@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:14 # Используем версию 14, так как 15.12 не поддерживается Flyway 10.20.1
+    container_name: habits_postgres
+    environment:
+      POSTGRES_DB: habitsdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: your-password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+volumes:
+  postgres_data:
